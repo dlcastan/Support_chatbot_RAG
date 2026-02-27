@@ -1,0 +1,50 @@
+[
+  {
+    "response": {
+      "user_question": "¿Qué tipo de conductas están prohibidas?",
+      "system_answer": "Está prohibido usar la plataforma para actividades ilegales, fraudulentas, ofensivas o que vulneren derechos de terceros. También se prohíbe la distribución de contenido malicioso o spam.",
+      "chunks_related": [
+        "¿Qué tipo de conductas están prohibidas?\nEstá prohibido el uso de la plataforma para actividades ilegales, fraudulentas, ofensivas o que vulneren derechos de terceros. También se prohíbe la distribución de contenido malicioso o spam."
+      ]
+    },
+    "evaluation": {
+      "score_total": 9,
+      "relevance_score": 10,
+      "precision_score": 9,
+      "completeness_score": 9,
+      "justification": "La respuesta es altamente relevante y precisa, ya que reproduce fielmente el contenido del contexto sobre las conductas prohibidas. Sin embargo, podría mejorar ligeramente en completitud al mencionar explícitamente que estas conductas están prohibidas en la plataforma, aunque el mensaje es claro y completo en esencia."
+    },
+    "metrics": {
+      "timestamp": "2026-02-27T19:55:49.229120",
+      "tokens_prompt": 910,
+      "tokens_completion": 129,
+      "total_tokens": 1039,
+      "latency_ms": 2695,
+      "estimated_cost_usd": "0.000570"
+    }
+  },
+  {
+    "response": {
+      "user_question": "¿Cómo optimizar el uso de la plataforma?",
+      "system_answer": "Se recomienda mantener actualizados los datos, revisar periódicamente las configuraciones y utilizar contraseñas seguras.",
+      "chunks_related": [
+        "¿Cómo optimizar el uso de la plataforma?\nSe recomienda mantener actualizados los datos, revisar periódicamente las configuraciones y utilizar contraseñas seguras."
+      ]
+    },
+    "evaluation": {
+      "score_total": 9,
+      "relevance_score": 10,
+      "precision_score": 10,
+      "completeness_score": 8,
+      "justification": "La respuesta es altamente relevante y precisa, ya que coincide exactamente con la información proporcionada en el contexto sobre cómo optimizar el uso de la plataforma. Sin embargo, podría ser más completa incluyendo otras recomendaciones adicionales que podrían estar implícitas en el contexto, aunque la respuesta cubre los puntos principales solicitados."
+    },
+    "metrics": {
+      "timestamp": "2026-02-27T19:57:36.886627",
+      "tokens_prompt": 904,
+      "tokens_completion": 93,
+      "total_tokens": 997,
+      "latency_ms": 1770,
+      "estimated_cost_usd": "0.000510"
+    }
+  }
+]

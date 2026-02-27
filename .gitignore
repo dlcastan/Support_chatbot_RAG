@@ -24,17 +24,11 @@ htmlcov/
 # Vector store (archivos grandes generados)
 vector_store/
 
-# Outputs generados
-outputs/
-
 # Jupyter Notebooks checkpoints
 .ipynb_checkpoints/
 
 # Métricas generadas
 metrics/
-
-# Data (si contiene archivos sensibles o pesados)
-# data/       ← descomenta si no quieres subir los datos
 
 # OS
 .DS_Store

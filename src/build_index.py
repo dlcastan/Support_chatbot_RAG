@@ -11,7 +11,7 @@ from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain_community.vectorstores import Chroma
 
 # ==========================================
-# 🔧 Logging
+# Logging
 # ==========================================
 logging.basicConfig(
     level=logging.INFO,
@@ -20,135 +20,159 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # ==========================================
-# 🔐 Load env
-# ==========================================
-load_dotenv(find_dotenv())
-
-embedding_model = os.getenv("EMBEDDING_MODEL")
-chat_model = os.getenv("CHAT_MODEL")
-
-if not embedding_model or not chat_model:
-    raise ValueError("EMBEDDING_MODEL o CHAT_MODEL no están definidos en .env")
-
-# ==========================================
-# 📁 Paths robustos
+# Paths robustos
 # ==========================================
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 VECTOR_STORE_DIR = PROJECT_ROOT / "vector_store"
 OUTPUT_DIR = PROJECT_ROOT / "outputs"
 OUTPUT_FILE = OUTPUT_DIR / "sample_queries.json"
 
-# ==========================================
-# 📥 Argumentos CLI
-# ==========================================
-parser = argparse.ArgumentParser()
-parser.add_argument("--pregunta", type=str, required=True)
-args = parser.parse_args()
-
-user_question = args.pregunta.strip()
-logger.info(f"Pregunta recibida: {user_question}")
 
 # ==========================================
-# 🧠 Embeddings
+# Carga de variables de entorno
 # ==========================================
-embeddings = OpenAIEmbeddings(model=embedding_model)
+def load_env() -> tuple[str, str]:
+    load_dotenv(find_dotenv())
+    embedding_model = os.getenv("EMBEDDING_MODEL")
+    chat_model = os.getenv("CHAT_MODEL")
+    if not embedding_model or not chat_model:
+        raise ValueError("EMBEDDING_MODEL o CHAT_MODEL no están definidos en .env")
+    return embedding_model, chat_model
 
-# ==========================================
-# 📚 Cargar base vectorial
-# ==========================================
-if not VECTOR_STORE_DIR.exists():
-    raise FileNotFoundError("No existe vector_store. Ejecutá primero build_index.py")
-
-vector_db = Chroma(
-    persist_directory=str(VECTOR_STORE_DIR),
-    embedding_function=embeddings
-)
-
-logger.info("Base vectorial cargada correctamente.")
 
 # ==========================================
-# 🔎 Búsqueda vectorial k-NN
+# Argumentos CLI
 # ==========================================
-k = 3
-start_time = time.time()
+def parse_args() -> str:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--pregunta", type=str, required=True)
+    args = parser.parse_args()
+    return args.pregunta.strip()
 
-results = vector_db.similarity_search_with_score(user_question, k=k)
-
-latency_ms = int((time.time() - start_time) * 1000)
-
-logger.info(f"Se recuperaron {len(results)} documentos relevantes.")
-
-chunks_related = []
-context_parts = []
-
-for doc, score in results:
-    chunks_related.append({
-        "content": doc.page_content,
-        "similarity_score": float(score)
-    })
-    context_parts.append(doc.page_content)
-
-context = "\n\n".join(context_parts)
 
 # ==========================================
-# 🤖 LLM
+# Inicialización de embeddings
 # ==========================================
-llm = ChatOpenAI(
-    model=chat_model,
-    temperature=0
-)
+def load_embeddings(embedding_model: str) -> OpenAIEmbeddings:
+    return OpenAIEmbeddings(model=embedding_model)
 
-prompt = f"""
+
+# ==========================================
+# Carga de base vectorial
+# ==========================================
+def load_vector_store(embeddings: OpenAIEmbeddings) -> Chroma:
+    if not VECTOR_STORE_DIR.exists():
+        raise FileNotFoundError("No existe vector_store. Ejecutá primero build_index.py")
+    vector_db = Chroma(
+        persist_directory=str(VECTOR_STORE_DIR),
+        embedding_function=embeddings
+    )
+    logger.info("Base vectorial cargada correctamente.")
+    return vector_db
+
+
+# ==========================================
+# Búsqueda vectorial k-NN
+# ==========================================
+def search_similar_chunks(vector_db: Chroma, question: str, k: int = 3) -> tuple[list, int]:
+    start_time = time.time()
+    results = vector_db.similarity_search_with_score(question, k=k)
+    latency_ms = int((time.time() - start_time) * 1000)
+    logger.info(f"Se recuperaron {len(results)} documentos relevantes.")
+    return results, latency_ms
+
+
+# ==========================================
+# Construcción de contexto y chunks
+# ==========================================
+def build_context(results: list) -> tuple[str, list]:
+    chunks_related = []
+    context_parts = []
+    for doc, score in results:
+        chunks_related.append({
+            "content": doc.page_content,
+            "similarity_score": float(score)
+        })
+        context_parts.append(doc.page_content)
+    context = "\n\n".join(context_parts)
+    return context, chunks_related
+
+
+# ==========================================
+# Llamada al LLM
+# ==========================================
+def query_llm(chat_model: str, context: str, question: str) -> str:
+    llm = ChatOpenAI(model=chat_model, temperature=0)
+    prompt = f"""
 Responde únicamente utilizando la información del contexto.
 
 Contexto:
 {context}
 
 Pregunta:
-{user_question}
+{question}
 
 Si no hay información suficiente, indícalo claramente.
 """
+    logger.info("Llamando al modelo...")
+    response = llm.invoke(prompt)
+    logger.info("Modelo respondió correctamente.")
+    return response.content.strip()
 
-logger.info("Llamando al modelo...")
-
-response = llm.invoke(prompt)
-system_answer = response.content.strip()
-
-logger.info("Modelo respondió correctamente.")
 
 # ==========================================
-# 📦 Construcción JSON final
+# Construcción del JSON final
 # ==========================================
-final_output = {
-    "response": {
-        "user_question": user_question,
-        "system_answer": system_answer,
-        "chunks_related": chunks_related
-    },
-    "metrics": {
-        "timestamp": datetime.now(timezone.utc).isoformat(),
-        "latency_ms": latency_ms,
-        "total_chunks_retrieved": len(results)
+def build_output(question: str, answer: str, chunks: list, latency_ms: int) -> dict:
+    return {
+        "response": {
+            "user_question": question,
+            "system_answer": answer,
+            "chunks_related": chunks
+        },
+        "metrics": {
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "latency_ms": latency_ms,
+            "total_chunks_retrieved": len(chunks)
+        }
     }
-}
+
 
 # ==========================================
-# 💾 Guardar archivo JSON (FORZADO)
+# Guardado del JSON
 # ==========================================
-try:
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+def save_output(data: dict) -> None:
+    try:
+        OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+        with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
+        logger.info(f"Archivo JSON guardado correctamente en: {OUTPUT_FILE}")
+    except Exception as e:
+        logger.error(f"Error al guardar JSON: {e}")
+        raise
 
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-        json.dump(final_output, f, indent=2, ensure_ascii=False)
-
-    logger.info(f"Archivo JSON guardado correctamente en: {OUTPUT_FILE}")
-
-except Exception as e:
-    logger.error(f"Error al guardar JSON: {e}")
-    raise
 
 # ==========================================
-# 🖥 Mostrar salida en consola
+# Main
 # ==========================================
-print(json.dumps(final_output, indent=2, ensure_ascii=False))
+def main():
+    embedding_model, chat_model = load_env()
+    user_question = parse_args()
+    logger.info(f"Pregunta recibida: {user_question}")
+
+    embeddings = load_embeddings(embedding_model)
+    vector_db = load_vector_store(embeddings)
+
+    results, latency_ms = search_similar_chunks(vector_db, user_question)
+    context, chunks_related = build_context(results)
+
+    system_answer = query_llm(chat_model, context, user_question)
+
+    final_output = build_output(user_question, system_answer, chunks_related, latency_ms)
+
+    save_output(final_output)
+    print(json.dumps(final_output, indent=2, ensure_ascii=False))
+
+
+if __name__ == "__main__":
+    main()

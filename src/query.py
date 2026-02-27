@@ -297,23 +297,23 @@ def main():
 
         validar_entrada(pregunta)
 
-        # 🔎 Cargar base vectorial
+        # Cargar base vectorial
         vector_db = cargar_vector_store()
 
-        # 🧠 Recuperar contexto
+        # Recuperar contexto
         contexto = recuperar_contexto(vector_db, pregunta)
 
-        # 📝 Construir prompt con RAG
+        # Construir prompt con RAG
         messages = construir_messages(pregunta, contexto)
 
-        # 🤖 Ejecutar modelo
+        # Ejecutar modelo
         resp, latencia_ms = ejecutar_modelo(messages)
 
-        # 📦 Parsear JSON
+        # Parsear JSON
         respuesta_json = parsear_respuesta(resp)
         evaluacion = evaluar_respuesta(pregunta, contexto, respuesta_json)
 
-        # 📊 Métricas
+        # Métricas
         metricas = calcular_metricas(resp, latencia_ms)
 
         registrar_metricas_csv(metricas)
@@ -322,7 +322,7 @@ def main():
 
         print(json.dumps(resultado, indent=2, ensure_ascii=False))
 
-        # 💾 Guardar resultado en outputs/sample_queries.json
+        # Guardar resultado en outputs/sample_queries.json
         output_path = Path(__file__).resolve().parent.parent / "outputs" / "sample_queries.json"
         output_path.parent.mkdir(exist_ok=True)
 
