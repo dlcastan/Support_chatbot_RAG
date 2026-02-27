@@ -27,9 +27,6 @@ vector_store/
 # Jupyter Notebooks checkpoints
 .ipynb_checkpoints/
 
-# Métricas generadas
-metrics/
-
 # OS
 .DS_Store
 Thumbs.db
