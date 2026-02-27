@@ -75,6 +75,12 @@ def load_vector_store(embeddings: OpenAIEmbeddings) -> Chroma:
 # Búsqueda vectorial k-NN
 # ==========================================
 def search_similar_chunks(vector_db: Chroma, question: str, k: int = 3) -> tuple[list, int]:
+
+    # Búsqueda k-NN con similitud coseno (métrica por defecto de Chroma con embeddings de OpenAI).
+    # Se eligió coseno porque mide el ángulo entre vectores, ignorando la magnitud,
+    # lo que la hace ideal para comparar embeddings de texto semántico.
+
+
     start_time = time.time()
     results = vector_db.similarity_search_with_score(question, k=k)
     latency_ms = int((time.time() - start_time) * 1000)

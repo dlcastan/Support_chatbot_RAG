@@ -102,6 +102,27 @@ make test
 
 ---
 
+## Búsqueda Vectorial
+
+La recuperación de contexto relevante se implementa mediante **k-Nearest Neighbors (k-NN)** sobre la base vectorial ChromaDB, utilizando **similitud coseno** como métrica de distancia.
+
+**Método:** k-NN con `k=3`, ejecutado a través de `similarity_search_with_score()` de LangChain + ChromaDB.
+
+**Métrica:** Similitud coseno, definida como:
+
+```
+cos(A, B) = (A · B) / (||A|| × ||B||)
+```
+
+Donde `A` es el embedding de la consulta del usuario y `B` es el embedding de cada chunk indexado. El resultado es un valor entre -1 y 1, donde 1 indica máxima similitud semántica.
+
+**¿Por qué similitud coseno?**  
+Los embeddings de texto (como los de `text-embedding-3-small`) codifican el significado semántico en la dirección del vector, no en su magnitud. La similitud coseno mide el ángulo entre vectores, ignorando la longitud, lo que la hace más adecuada que la distancia euclidiana para comparar textos de distinta extensión. Es la métrica estándar para búsqueda semántica sobre embeddings de lenguaje.
+
+Los scores obtenidos se registran en el campo `similarity_score` dentro de `chunks_related` en el JSON de salida.
+
+---
+
 ## Flujo del Sistema
 
 ```
