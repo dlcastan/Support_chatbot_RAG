@@ -1,0 +1,140 @@
+DOCUMENTO DE PREGUNTAS FRECUENTES (FAQ)
+Políticas, Procedimientos y Funcionalidades de la Plataforma
+
+INTRODUCCIÓN GENERAL
+
+Este documento recopila preguntas frecuentes relacionadas con las políticas, procedimientos y funcionalidades generales de una plataforma digital de servicios. El objetivo es ofrecer una guía clara, estructurada y completa para usuarios, administradores y colaboradores. Aquí se abordan aspectos vinculados al registro, uso de la cuenta, seguridad, privacidad, soporte técnico, actualizaciones, cumplimiento normativo y mejores prácticas. El contenido está diseñado para servir como material de referencia formal y suficientemente amplio como para cubrir escenarios habituales y situaciones excepcionales.
+
+SECCIÓN 1: REGISTRO Y CREACIÓN DE CUENTA
+
+¿Cómo puedo crear una cuenta?
+Para crear una cuenta, el usuario debe completar el formulario de registro proporcionando información válida y actualizada. Es obligatorio aceptar los términos y condiciones antes de finalizar el proceso. Una vez enviado el formulario, se enviará un correo electrónico de verificación.
+
+¿Qué requisitos debe cumplir la contraseña?
+La contraseña debe tener un mínimo de ocho caracteres, incluir al menos una letra mayúscula, una letra minúscula, un número y un carácter especial. Se recomienda no reutilizar contraseñas de otros servicios.
+
+¿Qué sucede si no recibo el correo de verificación?
+El usuario debe revisar la carpeta de correo no deseado. Si el mensaje no aparece, puede solicitar el reenvío desde la página de inicio de sesión. En caso de persistir el problema, deberá contactar al soporte técnico.
+
+¿Puedo tener más de una cuenta?
+Por política general, cada persona puede tener una sola cuenta activa. La creación de múltiples cuentas con el fin de evadir restricciones o límites constituye una infracción a las normas del servicio.
+
+SECCIÓN 2: GESTIÓN DE CUENTA
+
+¿Cómo puedo actualizar mi información personal?
+Desde el panel de usuario se puede editar la información de perfil, incluyendo nombre, correo electrónico y preferencias de notificación. Algunos cambios pueden requerir verificación adicional.
+
+¿Cómo elimino mi cuenta?
+El usuario puede solicitar la eliminación desde la sección de configuración. El proceso puede incluir una confirmación adicional para evitar eliminaciones accidentales. Una vez eliminada, la cuenta no podrá recuperarse.
+
+¿Qué ocurre con mis datos al eliminar la cuenta?
+Los datos se gestionan conforme a la política de privacidad. Parte de la información puede conservarse durante un período determinado por obligaciones legales o contractuales.
+
+¿Puedo transferir mi cuenta a otra persona?
+No. Las cuentas son personales e intransferibles. Compartir credenciales está prohibido y puede generar la suspensión del servicio.
+
+SECCIÓN 3: POLÍTICAS DE USO
+
+¿Qué tipo de conductas están prohibidas?
+Está prohibido el uso de la plataforma para actividades ilegales, fraudulentas, ofensivas o que vulneren derechos de terceros. También se prohíbe la distribución de contenido malicioso o spam.
+
+¿Qué medidas se aplican ante una infracción?
+Dependiendo de la gravedad, las medidas pueden incluir advertencias, suspensión temporal o cancelación definitiva de la cuenta.
+
+¿Cómo se reporta un comportamiento inapropiado?
+La plataforma dispone de un sistema de reporte accesible desde cada sección relevante. El equipo de moderación evaluará cada caso conforme a las políticas vigentes.
+
+¿Se puede apelar una suspensión?
+Sí. El usuario puede presentar una solicitud de revisión aportando información adicional. La decisión final será comunicada por los canales oficiales.
+
+SECCIÓN 4: SEGURIDAD Y PRIVACIDAD
+
+¿Cómo se protegen mis datos personales?
+La plataforma implementa medidas técnicas y organizativas de seguridad, incluyendo cifrado, controles de acceso y monitoreo de actividad sospechosa.
+
+¿Qué debo hacer si detecto actividad sospechosa en mi cuenta?
+Se recomienda cambiar la contraseña de inmediato y notificar al equipo de soporte. Puede activarse la autenticación de dos factores para mayor protección.
+
+¿Se comparten mis datos con terceros?
+Los datos solo se comparten cuando es necesario para la prestación del servicio, cumplimiento legal o con consentimiento explícito del usuario.
+
+¿Cómo puedo ejercer mis derechos sobre mis datos?
+El usuario puede solicitar acceso, rectificación o eliminación de datos mediante el formulario de contacto de privacidad.
+
+SECCIÓN 5: FUNCIONALIDADES PRINCIPALES
+
+¿Cuáles son las funcionalidades básicas de la plataforma?
+Incluyen gestión de perfil, creación de contenido, interacción con otros usuarios, configuración de notificaciones y acceso a reportes personalizados.
+
+¿Cómo funcionan las notificaciones?
+Las notificaciones pueden configurarse para enviarse por correo electrónico o mostrarse dentro de la plataforma. El usuario puede personalizar la frecuencia y tipo de avisos.
+
+¿Qué es el panel de administración?
+Es un módulo destinado a usuarios con permisos especiales que permite gestionar configuraciones, revisar reportes y supervisar la actividad general.
+
+¿Se pueden integrar servicios externos?
+Sí, la plataforma puede ofrecer integraciones con herramientas externas mediante APIs. Estas integraciones pueden requerir configuraciones adicionales.
+
+SECCIÓN 6: SOPORTE TÉCNICO
+
+¿Cómo contacto al soporte?
+El soporte está disponible mediante formulario web o correo electrónico. Se recomienda describir el problema con el mayor detalle posible.
+
+¿Cuál es el tiempo de respuesta?
+El tiempo estimado depende del volumen de consultas y la complejidad del caso. Generalmente, las solicitudes se atienden en un plazo de 24 a 72 horas hábiles.
+
+¿Qué información debo incluir en mi consulta?
+Se debe incluir el identificador de cuenta, descripción clara del problema, capturas de pantalla si corresponde y pasos realizados previamente.
+
+¿Existe un centro de ayuda?
+Sí, se dispone de una base de conocimiento con artículos y guías paso a paso.
+
+SECCIÓN 7: PAGOS Y FACTURACIÓN
+
+¿Qué métodos de pago se aceptan?
+Los métodos pueden incluir tarjetas de crédito, transferencias bancarias y otros medios electrónicos.
+
+¿Cómo obtengo una factura?
+Las facturas se generan automáticamente y pueden descargarse desde la sección de facturación.
+
+¿Se ofrecen reembolsos?
+La política de reembolsos depende del tipo de servicio contratado y las condiciones específicas del plan.
+
+¿Qué sucede si mi pago falla?
+El sistema notificará al usuario para que actualice la información de pago. Puede aplicarse una suspensión temporal hasta regularizar la situación.
+
+SECCIÓN 8: ACTUALIZACIONES Y CAMBIOS
+
+¿Cómo me informan sobre cambios en las políticas?
+Las actualizaciones importantes se comunican por correo electrónico o mediante avisos destacados en la plataforma.
+
+¿Pueden cambiar las funcionalidades sin previo aviso?
+La plataforma puede realizar mejoras y ajustes continuos. Los cambios sustanciales serán comunicados con anticipación razonable.
+
+¿Qué debo hacer si no estoy de acuerdo con una actualización?
+El usuario puede dejar de utilizar el servicio y solicitar la cancelación de la cuenta conforme a los términos establecidos.
+
+SECCIÓN 9: CUMPLIMIENTO Y RESPONSABILIDAD
+
+¿Qué responsabilidades tiene el usuario?
+El usuario es responsable de mantener la confidencialidad de sus credenciales y del uso adecuado del servicio.
+
+¿La plataforma garantiza disponibilidad permanente?
+Se procura una alta disponibilidad, pero pueden existir interrupciones por mantenimiento o causas técnicas imprevistas.
+
+¿Qué limitaciones de responsabilidad existen?
+La plataforma no será responsable por daños indirectos, pérdidas de datos atribuibles al usuario o circunstancias fuera de su control razonable.
+
+SECCIÓN 10: BUENAS PRÁCTICAS
+
+¿Cómo optimizar el uso de la plataforma?
+Se recomienda mantener actualizados los datos, revisar periódicamente las configuraciones y utilizar contraseñas seguras.
+
+¿Cómo contribuir a un entorno seguro?
+Respetando las normas de conducta, reportando incidencias y evitando compartir información sensible en espacios públicos.
+
+¿Qué hacer ante errores frecuentes?
+Consultar la sección de ayuda antes de contactar soporte puede ahorrar tiempo y ofrecer soluciones inmediatas.
+
+¿Cómo aprovechar nuevas funcionalidades?
+Revisar las guías de actualización y participar en sesiones informativas o tutoriales cuando estén disponibles.

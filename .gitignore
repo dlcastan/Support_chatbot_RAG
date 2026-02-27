@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Environment variables
+.env
+
+# Pytest
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Vector store (archivos grandes generados)
+vector_store/
+
+# Outputs generados
+outputs/
+
+# Jupyter Notebooks checkpoints
+.ipynb_checkpoints/
+
+# Métricas generadas
+metrics/
+
+# Data (si contiene archivos sensibles o pesados)
+# data/       ← descomenta si no quieres subir los datos
+
+# OS
+.DS_Store
+Thumbs.db
