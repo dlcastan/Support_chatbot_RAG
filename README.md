@@ -102,19 +102,21 @@ make test
 
 ---
 
+## ¿Por qué RAG?
+
+Este sistema utiliza RAG (Retrieval-Augmented Generation) porque permite proporcionar información actualizada sin necesidad de reentrenar el modelo. En lugar de depender únicamente del conocimiento interno del LLM, el pipeline sigue dos pasos explícitos: primero **recupera** los chunks más relevantes desde la base vectorial (ChromaDB), y luego **genera** la respuesta condicionada exclusivamente a ese contexto.
+
+Este enfoque resuelve tres problemas concretos:
+
+- **Límite de tokens**: al pasar solo los chunks relevantes al modelo en lugar de toda la base de conocimiento, se mantiene el prompt dentro del límite de contexto del LLM.
+- **Conocimiento actualizable**: para incorporar nueva información basta con reindexar documentos en el vector store, sin reentrenar ni modificar el modelo.
+- **Transparencia y atribución**: cada respuesta puede trazarse hasta los chunks que la originaron, lo que hace el proceso auditable y reduce alucinaciones.
+
+---
+
 ## Búsqueda Vectorial
 
 La recuperación de contexto relevante se implementa mediante **k-Nearest Neighbors (k-NN)** sobre la base vectorial ChromaDB, utilizando **similitud coseno** como métrica de distancia.
-
-**Método:** k-NN con `k=3`, ejecutado a través de `similarity_search_with_score()` de LangChain + ChromaDB.
-
-**Métrica:** Similitud coseno, definida como:
-
-```
-cos(A, B) = (A · B) / (||A|| × ||B||)
-```
-
-Donde `A` es el embedding de la consulta del usuario y `B` es el embedding de cada chunk indexado. El resultado es un valor entre -1 y 1, donde 1 indica máxima similitud semántica.
 
 **¿Por qué similitud coseno?**  
 Los embeddings de texto (como los de `text-embedding-3-small`) codifican el significado semántico en la dirección del vector, no en su magnitud. La similitud coseno mide el ángulo entre vectores, ignorando la longitud, lo que la hace más adecuada que la distancia euclidiana para comparar textos de distinta extensión. Es la métrica estándar para búsqueda semántica sobre embeddings de lenguaje.

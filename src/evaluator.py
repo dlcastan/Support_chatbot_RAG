@@ -27,15 +27,22 @@ Devuelve SOLO un JSON válido (sin bloques de código, sin texto adicional) con 
 - completeness_score (número entero 0-10)
 - justification (string)
 
+El campo "justification" debe:
+- Tener al menos 50 caracteres.
+- Mencionar explícitamente cuántos chunks del contexto fueron utilizados en la respuesta.
+- Indicar si algún chunk fue ignorado o podría haber aportado más detalle.
+- Ejemplo: "Puntaje 8: la respuesta usa 2 de los 3 chunks recuperados y responde la pregunta correctamente, pero no incorpora el detalle del chunk 3 sobre configuraciones avanzadas."
+
 Pregunta:
 {pregunta}
 
-Contexto:
+Contexto (chunks recuperados):
 {contexto}
 
-Respuesta:
+Respuesta generada:
 {respuesta_serializada}
 """
+
 
         # Usamos Chat Completions en lugar de Responses API para mayor estabilidad
         response = client.chat.completions.create(

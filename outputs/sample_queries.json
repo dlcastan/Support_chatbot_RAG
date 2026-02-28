@@ -46,5 +46,53 @@
       "latency_ms": 1770,
       "estimated_cost_usd": "0.000510"
     }
+  },
+  {
+    "response": {
+      "user_question": "¿Qué hacer ante errores frecuentes?",
+      "system_answer": "Ante errores frecuentes, se recomienda consultar la sección de ayuda antes de contactar soporte, ya que puede ahorrar tiempo y ofrecer soluciones inmediatas.",
+      "chunks_related": [
+        "¿Qué hacer ante errores frecuentes?\nConsultar la sección de ayuda antes de contactar soporte puede ahorrar tiempo y ofrecer soluciones inmediatas."
+      ]
+    },
+    "evaluation": {
+      "score_total": 9,
+      "relevance_score": 10,
+      "precision_score": 10,
+      "completeness_score": 8,
+      "justification": "La respuesta es altamente relevante y precisa, ya que coincide exactamente con la información proporcionada en el contexto. Sin embargo, podría ser más completa al incluir recomendaciones adicionales o ejemplos para manejar errores frecuentes, aunque la respuesta dada cumple con lo solicitado de manera clara y directa."
+    },
+    "metrics": {
+      "timestamp": "2026-02-27T20:33:05.448858",
+      "tokens_prompt": 898,
+      "tokens_completion": 88,
+      "total_tokens": 986,
+      "latency_ms": 2244,
+      "estimated_cost_usd": "0.000500"
+    }
+  },
+  {
+    "response": {
+      "user_question": "¿Qué hacer ante errores frecuentes?",
+      "system_answer": "Ante errores frecuentes, se recomienda consultar la sección de ayuda antes de contactar soporte, ya que puede ahorrar tiempo y ofrecer soluciones inmediatas.",
+      "chunks_related": [
+        "¿Qué hacer ante errores frecuentes?\nConsultar la sección de ayuda antes de contactar soporte puede ahorrar tiempo y ofrecer soluciones inmediatas."
+      ]
+    },
+    "evaluation": {
+      "score_total": 8,
+      "relevance_score": 9,
+      "precision_score": 9,
+      "completeness_score": 7,
+      "justification": "Puntaje 8: la respuesta utiliza 1 de los 3 chunks recuperados, específicamente el chunk que responde directamente a la pregunta. Sin embargo, ignora otros chunks que podrían aportar recomendaciones adicionales para manejar errores frecuentes, como mantener actualizados los datos o revisar configuraciones, lo que hubiera enriquecido la respuesta."
+    },
+    "metrics": {
+      "timestamp": "2026-02-27T20:48:44.585968",
+      "tokens_prompt": 898,
+      "tokens_completion": 88,
+      "total_tokens": 986,
+      "latency_ms": 2179,
+      "estimated_cost_usd": "0.000500"
+    }
   }
 ]
