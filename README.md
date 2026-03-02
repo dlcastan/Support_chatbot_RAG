@@ -36,6 +36,9 @@ El sistema:
 ```
 proyecto/
 │
+├── data/
+│   └── faq_document.txt     -> Documento con la informacion a vectorizar
+│
 ├── metrics/
 │   └── metrics.csv          -> Registra tokens, latencia y costo por consulta
 │
@@ -44,6 +47,9 @@ proyecto/
 │
 ├── prompts/
 │   └── main_prompt.txt      -> Define el prompt principal del sistema
+│
+├── notebooks/
+│   └── notebook.ipynb      -> Notebook con el proceso principal
 │
 ├── vector_store/            -> Base vectorial ChromaDB (generada por build_index.py)
 │
@@ -67,9 +73,8 @@ proyecto/
 
 ```
 OPENAI_API_KEY=tu_api_key
-OPENAI_MODEL=gpt-4.1-mini
-EMBEDDING_MODEL=text-embedding-3-small
-CHAT_MODEL=gpt-4.1-mini
+OPENAI_MODEL=tu_modelo
+EMBEDDING_MODEL=tu_modelo
 ```
 
 **Instalar dependencias:**
@@ -85,7 +90,7 @@ make install
 **1. Construir la base vectorial** (ejecutar una sola vez o al actualizar los documentos):
 
 ```
-python src/build_index.py --pregunta "pregunta de prueba"
+python src/build_index.py
 ```
 
 **2. Ejecutar una consulta:**
@@ -110,7 +115,7 @@ Este enfoque resuelve tres problemas concretos:
 
 - **Límite de tokens**: al pasar solo los chunks relevantes al modelo en lugar de toda la base de conocimiento, se mantiene el prompt dentro del límite de contexto del LLM.
 - **Conocimiento actualizable**: para incorporar nueva información basta con reindexar documentos en el vector store, sin reentrenar ni modificar el modelo.
-- **Transparencia y atribución**: cada respuesta puede trazarse hasta los chunks que la originaron, lo que hace el proceso auditable y reduce alucinaciones.
+- **Transparencia**: cada respuesta puede trazarse hasta los chunks que la originaron, lo que hace el proceso auditable y reduce alucinaciones.
 
 ---
 
@@ -159,27 +164,30 @@ Salida JSON estructurada
 El sistema devuelve un JSON con la siguiente estructura:
 
 ```json
-{
-  "response": {
-    "answer": "Respuesta del sistema",
-    "actions": ["Acción sugerida 1", "Acción sugerida 2"]
-  },
-  "evaluation": {
-    "score_total": 9,
-    "relevance_score": 9,
-    "precision_score": 8,
-    "completeness_score": 9,
-    "justification": "La respuesta es precisa y cubre el contexto disponible."
-  },
-  "metrics": {
-    "timestamp": "2025-01-01T12:00:00",
-    "tokens_prompt": 320,
-    "tokens_completion": 85,
-    "total_tokens": 405,
-    "latency_ms": 1240,
-    "estimated_cost_usd": "0.000210"
+  {
+    "response": {
+      "user_question": "¿Qué tipo de conductas están prohibidas?",
+      "system_answer": "Está prohibido usar la plataforma para actividades ilegales, fraudulentas, ofensivas o que vulneren derechos de terceros. También se prohíbe la distribución de contenido malicioso o spam.",
+      "chunks_related": [
+        "¿Qué tipo de conductas están prohibidas?\nEstá prohibido el uso de la plataforma para actividades ilegales, fraudulentas, ofensivas o que vulneren derechos de terceros. También se prohíbe la distribución de contenido malicioso o spam."
+      ]
+    },
+    "evaluation": {
+      "score_total": 9,
+      "relevance_score": 10,
+      "precision_score": 9,
+      "completeness_score": 9,
+      "justification": "La respuesta es altamente relevante y precisa, ya que reproduce fielmente el contenido del contexto sobre las conductas prohibidas. Sin embargo, podría mejorar ligeramente en completitud al mencionar explícitamente que estas conductas están prohibidas en la plataforma, aunque el mensaje es claro y completo en esencia."
+    },
+    "metrics": {
+      "timestamp": "2026-02-27T19:55:49.229120",
+      "tokens_prompt": 910,
+      "tokens_completion": 129,
+      "total_tokens": 1039,
+      "latency_ms": 2695,
+      "estimated_cost_usd": "0.000570"
+    }
   }
-}
 ```
 
 ---
